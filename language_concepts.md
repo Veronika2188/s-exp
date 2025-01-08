@@ -1152,6 +1152,107 @@ let rec parse_tokens tokens =
 
 -   Here, `parse_tokens` is a recursive function that calls itself to parse the list of tokens.
 
+## 40. Algebraic Data Types (Rust)
+
+### What are Algebraic Data Types (Rust)?
+
+Algebraic data types (ADTs) in Rust are a way to define complex types by combining other types using enums.
+
+### Rust
+
+**Example:**
+
+```rust
+#[derive(Debug, PartialEq)]
+enum SExp {
+    Atom(String),
+    SList(Vec<SExp>),
+}
+```
+
+-   Here, `SExp` is an ADT that can be either an `Atom` (containing a `String`) or an `SList` (containing a `Vec<SExp>`).
+
+## 41. Pattern Matching (Rust)
+
+### What is Pattern Matching (Rust)?
+
+Pattern matching in Rust is a way to match values against patterns and execute different code based on the match.
+
+### Rust
+
+**Example:**
+
+```rust
+impl SExp {
+    fn to_string(&self) -> String {
+        match self {
+            SExp::Atom(v) => v.clone(),
+            SExp::SList(l) => {
+                let mut result = String::from("(");
+                for sexp in l {
+                    result.push_str(&sexp.to_string());
+                }
+                result.push_str(")");
+                result
+            }
+        }
+    }
+}
+```
+
+-   Here, `match` is used to handle different cases of the `SExp` enum.
+
+## 42. Vectors (Rust)
+
+### What are Vectors (Rust)?
+
+Vectors in Rust are dynamic arrays that can grow or shrink in size.
+
+### Rust
+
+**Example:**
+
+```rust
+impl SExp {
+    fn to_string(&self) -> String {
+        match self {
+            SExp::Atom(v) => v.clone(),
+            SExp::SList(l) => {
+                let mut result = String::from("(");
+                for sexp in l {
+                    result.push_str(&sexp.to_string());
+                }
+                result.push_str(")");
+                result
+            }
+        }
+    }
+}
+```
+
+-   Here, `Vec<SExp>` is used to store the children of an `SList`.
+
+## 43. Error Handling (Rust)
+
+### What is Error Handling (Rust)?
+
+Error handling in Rust uses the `Result` type to represent either a successful value or an error.
+
+### Rust
+
+**Example:**
+
+```rust
+fn parse_tokens(tokens: &mut Vec<String>) -> Result<SExp, String> {
+    if tokens.is_empty() {
+        return Err("Unexpected end of input".to_string());
+    }
+    ...
+}
+```
+
+-   Here, `Result<SExp, String>` is used to represent either a successful `SExp` or an error message.
+
 ## 12. Variables
 
 ### What are Variables?
